@@ -22,6 +22,9 @@ function YoloUpload() {
   const [error, setError] = useState(null);
   const [preview, setPreview] = useState(null);
 
+  // ✅ UPDATED: Changed to your deployed Render backend URL
+  const API_BASE_URL = "https://leaf-disease-backend-4.onrender.com";
+
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -48,7 +51,8 @@ function YoloUpload() {
       const formData = new FormData();
       formData.append("image", image);
       
-      const res = await axios.post(`http://localhost:5000${endpoint}`, formData, {
+      // ✅ UPDATED: Using the deployed backend URL
+      const res = await axios.post(`${API_BASE_URL}${endpoint}`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
         timeout: 30000,
       });
@@ -173,8 +177,9 @@ function YoloUpload() {
                   )}
                 </button>
                 
+                {/* Note: High confidence endpoint might not exist on deployed backend */}
                 <button 
-                  onClick={() => handleSubmit("/high-confidence-detect")}
+                  onClick={() => handleSubmit("/detect")} // Using same endpoint for now
                   disabled={loading || !image}
                   className="detect-btn secondary"
                 >
