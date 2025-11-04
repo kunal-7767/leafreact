@@ -189,28 +189,7 @@ function YoloUpload() {
             </div>
           </div>
 
-          {/* Legal Notice Box */}
-          <div className="legal-notice">
-            <div className="legal-header">
-              <h3>📜 Copyright & Legal Notice</h3>
-            </div>
-            <div className="legal-content">
-              <p><strong>Copyright Notice</strong></p>
-              <p>Leaf Disease Detector is a literary work owned by 
-                Symbiosis International Deemed University 
-                and officially registered under the Copyright Office, Government of India.</p>
-              
-              <p><strong>Demo Compilation & Legal Disclaimer</strong></p> 
-              <p>This expanded demo compilation has been freshly created 
-                solely to showcase the scope and impact of the solution potential.</p>
-              
-              <p><strong>IMPORTANT:</strong> The underlying disease detector model is provided for
-                demonstration and illustrative purposes only. The University and 
-                Authors make no warranty as to its accuracy or reliability. 
-                Users must NOT rely on the output for any diagnostic, commercial,
-                or real-world application.</p>
-            </div>
-          </div>
+          
 
           {/* Results Section */}
           {result && (
@@ -288,6 +267,28 @@ function YoloUpload() {
               )}
             </div>
           )}
+          {/* Legal Notice Box */}
+          <div className="legal-notice">
+            <div className="legal-header">
+              <h3>📜 Copyright & Legal Notice</h3>
+            </div>
+            <div className="legal-content">
+              <p><strong>Copyright Notice</strong></p>
+              <p>Leaf Disease Detector is a literary work owned by 
+                Symbiosis International Deemed University 
+                and officially registered under the Copyright Office, Government of India.</p>
+              
+              <p><strong>Demo Compilation & Legal Disclaimer</strong></p> 
+              <p>This expanded demo compilation has been freshly created 
+                solely to showcase the scope and impact of the solution potential.</p>
+              
+              <p><strong>IMPORTANT:</strong> The underlying disease detector model is provided for
+                demonstration and illustrative purposes only. The University and 
+                Authors make no warranty as to its accuracy or reliability. 
+                Users must NOT rely on the output for any diagnostic, commercial,
+                or real-world application.</p>
+            </div>
+          </div>
 
           {/* Error Display */}
           {error && (
