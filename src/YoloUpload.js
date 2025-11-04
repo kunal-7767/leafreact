@@ -23,7 +23,7 @@ function YoloUpload() {
   const [preview, setPreview] = useState(null);
 
   // ✅ UPDATED: Changed to your deployed Render backend URL
-  const API_BASE_URL = "https://leaf-disease-backend-4.onrender.com";
+ const API_BASE_URL = "https://leaf-disease-backend-7.onrender.com";
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
