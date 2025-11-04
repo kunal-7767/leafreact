@@ -52,9 +52,9 @@ function YoloUpload() {
       formData.append("image", image);
       
       // ✅ UPDATED: Using the deployed backend URL
-      const res = await axios.post(`${API_BASE_URL}${endpoint}`, formData, {
+          const res = await axios.post(`${API_BASE_URL}${endpoint}`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
-        timeout: 30000,
+        timeout: 60000, // Increase to 60 seconds
       });
       
       setResult(res.data);
