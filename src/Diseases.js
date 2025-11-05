@@ -6,12 +6,11 @@ import './Diseases.css';
 const Diseases = () => {
   const location = useLocation();
 
+
   const navLinks = [
-    { path: '/', label: 'Home' },
-    { path: '/diseases', label: 'Diseases' },
-    { path: '/causes', label: 'Causes' },
-    { path: '/prevention', label: 'Prevention' },
-    { path: '/care', label: 'Care' }
+    { path: '/solutions', label: 'Solutions' },
+    { path: '/', label: 'Demo' },
+    { path: '/diseases', label: 'Diseases' }
   ];
 
   const isActive = (path) => location.pathname === path;
