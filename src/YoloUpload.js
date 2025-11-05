@@ -23,7 +23,7 @@ function YoloUpload() {
   const [preview, setPreview] = useState(null);
 
   // ✅ UPDATED: Changed to your deployed Render backend URL
- const API_BASE_URL = "https://leaf-disease-backend-7.onrender.com";
+ const API_BASE_URL = "https://leaf-disease-backend-8.onrender.com";
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -54,7 +54,7 @@ function YoloUpload() {
       // ✅ UPDATED: Using the deployed backend URL
           const res = await axios.post(`${API_BASE_URL}${endpoint}`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
-        timeout: 60000, // Increase to 60 seconds
+        timeout: 120000, // 120 seconds
       });
       
       setResult(res.data);
