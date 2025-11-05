@@ -6,11 +6,11 @@ import "./LeafDiseaseDetector.css";
 function YoloUpload() {
   const location = useLocation();
 
- const navLinks = [
-  { path: '/solutions', label: 'Solutions' },
-  { path: '/', label: 'Demo' },
-  { path: '/diseases', label: 'Diseases' }
-];
+  const navLinks = [
+    { path: '/solutions', label: 'Solutions' },
+    { path: '/', label: 'Demo' },
+    { path: '/diseases', label: 'Diseases' }
+  ];
 
   const isActive = (path) => location.pathname === path;
 
@@ -20,8 +20,7 @@ function YoloUpload() {
   const [error, setError] = useState(null);
   const [preview, setPreview] = useState(null);
 
-  // ✅ UPDATED: Changed to your deployed Render backend URL
- const API_BASE_URL = "https://leaf-disease-backend-8.onrender.com";
+  const API_BASE_URL = "https://leaf-disease-backend-8.onrender.com";
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -49,10 +48,9 @@ function YoloUpload() {
       const formData = new FormData();
       formData.append("image", image);
       
-      // ✅ UPDATED: Using the deployed backend URL
-          const res = await axios.post(`${API_BASE_URL}${endpoint}`, formData, {
+      const res = await axios.post(`${API_BASE_URL}${endpoint}`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
-        timeout: 120000, // 120 seconds
+        timeout: 120000,
       });
       
       setResult(res.data);
@@ -98,9 +96,7 @@ function YoloUpload() {
           ))}
         </div>
 
-        <Link to="/" className="btn-primary">
-          Detect Disease
-        </Link>
+       
       </nav>
 
       {/* Hero Section */}
@@ -112,20 +108,19 @@ function YoloUpload() {
           </h1>
           <p className="header-subtitle">
             Advanced AI-powered plant health analysis for precision agriculture
-           </p>
-           <br></br>
-
+          </p>
+          <br />
           <p className="header-subtitle">
-            IP Registered with the Goverment of India 
-           </p>
+            IP Registered with the Government of India 
+          </p>
         </div>
       </header>
 
       <div className="detector-layout">
-        {/* Main Content */}
-        <div className="main-content">
-          {/* Upload Section */}
-          <div className="upload-section">
+        {/* Two Column Layout */}
+        <div className="two-column-layout">
+          {/* Left Column - Upload Section */}
+          <div className="column upload-column">
             <div className="upload-card">
               <div className="upload-header">
                 <h2>Upload Leaf Image</h2>
@@ -175,9 +170,8 @@ function YoloUpload() {
                   )}
                 </button>
                 
-                {/* Note: High confidence endpoint might not exist on deployed backend */}
                 <button 
-                  onClick={() => handleSubmit("/detect")} // Using same endpoint for now
+                  onClick={() => handleSubmit("/detect")}
                   disabled={loading || !image}
                   className="detect-btn secondary"
                 >
@@ -187,117 +181,124 @@ function YoloUpload() {
             </div>
           </div>
 
-          
-
-          {/* Results Section */}
-          {result && (
+          {/* Right Column - Results Section */}
+          <div className="column results-column">
             <div className="results-section">
               <div className="results-header">
                 <h2>Detection Results</h2>
                 <div className="results-summary">
                   <span className="detection-count">
-                    {result.total_detections || 0} diseases detected
+                    {result ? `${result.total_detections || 0} diseases detected` : "No analysis yet"}
                   </span>
                 </div>
               </div>
 
-              {result.detections && result.detections.length > 0 ? (
-                <div className="detections-grid">
-                  {result.detections.map((detection, index) => {
-                    const confidencePercent = detection.confidence_percentage || (detection.confidence * 100);
-                    const severityColor = getSeverityColor(confidencePercent);
-                    const severityLevel = getSeverityLevel(confidencePercent);
-                    
-                    return (
-                      <div key={index} className="detection-card">
-                        <div className="detection-header">
-                          <h3 className="disease-name">{detection.class_name || detection.class}</h3>
-                          <div 
-                            className="severity-badge"
-                            style={{ backgroundColor: severityColor }}
-                          >
-                            {severityLevel}
-                          </div>
-                        </div>
-                        
-                        <div className="confidence-meter">
-                          <div className="confidence-info">
-                            <span>Confidence Level</span>
-                            <span className="confidence-value">
-                              {confidencePercent.toFixed(1)}%
-                            </span>
-                          </div>
-                          <div className="confidence-bar">
+              {result ? (
+                result.detections && result.detections.length > 0 ? (
+                  <div className="detections-grid">
+                    {result.detections.map((detection, index) => {
+                      const confidencePercent = detection.confidence_percentage || (detection.confidence * 100);
+                      const severityColor = getSeverityColor(confidencePercent);
+                      const severityLevel = getSeverityLevel(confidencePercent);
+                      
+                      return (
+                        <div key={index} className="detection-card">
+                          <div className="detection-header">
+                            <h3 className="disease-name">{detection.class_name || detection.class}</h3>
                             <div 
-                              className="confidence-fill"
-                              style={{ 
-                                width: `${confidencePercent}%`,
-                                backgroundColor: severityColor
-                              }}
-                            ></div>
+                              className="severity-badge"
+                              style={{ backgroundColor: severityColor }}
+                            >
+                              {severityLevel}
+                            </div>
                           </div>
-                        </div>
-
-                        <div className="detection-details">
-                          <div className="detail-item">
-                            <span className="detail-label">Class ID:</span>
-                            <span className="detail-value">{detection.class_id}</span>
-                          </div>
-                          {detection.bbox && (
-                            <div className="detail-item">
-                              <span className="detail-label">Detection Area:</span>
-                              <span className="detail-value">
-                                {detection.bbox.map(coord => Math.round(coord)).join(', ')}
+                          
+                          <div className="confidence-meter">
+                            <div className="confidence-info">
+                              <span>Confidence Level</span>
+                              <span className="confidence-value">
+                                {confidencePercent.toFixed(1)}%
                               </span>
                             </div>
-                          )}
+                            <div className="confidence-bar">
+                              <div 
+                                className="confidence-fill"
+                                style={{ 
+                                  width: `${confidencePercent}%`,
+                                  backgroundColor: severityColor
+                                }}
+                              ></div>
+                            </div>
+                          </div>
+
+                          <div className="detection-details">
+                            <div className="detail-item">
+                              <span className="detail-label">Class ID:</span>
+                              <span className="detail-value">{detection.class_id}</span>
+                            </div>
+                            {detection.bbox && (
+                              <div className="detail-item">
+                                <span className="detail-label">Detection Area:</span>
+                                <span className="detail-value">
+                                  {detection.bbox.map(coord => Math.round(coord)).join(', ')}
+                                </span>
+                              </div>
+                            )}
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })}
-                </div>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <div className="no-detections">
+                    <div className="no-detections-icon">✅</div>
+                    <h3>No Diseases Detected</h3>
+                    <p>Your plant appears to be healthy. No significant disease patterns were identified.</p>
+                  </div>
+                )
               ) : (
-                <div className="no-detections">
-                  <div className="no-detections-icon">✅</div>
-                  <h3>No Diseases Detected</h3>
-                  <p>Your plant appears to be healthy. No significant disease patterns were identified.</p>
+                <div className="no-results-placeholder">
+                  <div className="placeholder-icon">📊</div>
+                  <h3>Results Will Appear Here</h3>
+                  <p>Upload an image and click "Detect Diseases" to see analysis results</p>
                 </div>
               )}
             </div>
-          )}
-          {/* Legal Notice Box */}
-          <div className="legal-notice">
-            <div className="legal-header">
-              <h3>📜 Copyright & Legal Notice</h3>
-            </div>
-            <div className="legal-content">
-              <p><strong>Copyright Notice</strong></p>
-              <p>Leaf Disease Detector is a literary work owned by 
-                Symbiosis International Deemed University 
-                and officially registered under the Copyright Office, Government of India.</p>
-              
-              <p><strong>Demo Compilation & Legal Disclaimer</strong></p> 
-              <p>This expanded demo compilation has been freshly created 
-                solely to showcase the scope and impact of the solution potential.</p>
-              
-              <p><strong>IMPORTANT:</strong> The underlying disease detector model is provided for
-                demonstration and illustrative purposes only. The University and 
-                Authors make no warranty as to its accuracy or reliability. 
-                Users must NOT rely on the output for any diagnostic, commercial,
-                or real-world application.</p>
+          </div>
+        </div>
+
+        {/* Error Display */}
+        {error && (
+          <div className="error-alert">
+            <div className="error-icon">⚠️</div>
+            <div className="error-content">
+              <h4>Detection Error</h4>
+              <p>{error}</p>
             </div>
           </div>
+        )}
 
-          {/* Error Display */}
-          {error && (
-            <div className="error-alert">
-              <div className="error-icon">⚠️</div>
-              <div className="error-content">
-                <h4>Detection Error</h4>
-                <p>{error}</p>
-              </div>
-            </div>
-          )}
+        {/* Copyright Notice - Full Width Bottom */}
+        <div className="legal-notice">
+          <div className="legal-header">
+            <h3>📜 Copyright & Legal Notice</h3>
+          </div>
+          <div className="legal-content">
+            <p><strong>Copyright Notice</strong></p>
+            <p>Leaf Disease Detector is a literary work owned by 
+              Symbiosis International Deemed University 
+              and officially registered under the Copyright Office, Government of India.</p>
+            
+            <p><strong>Demo Compilation & Legal Disclaimer</strong></p> 
+            <p>This expanded demo compilation has been freshly created 
+              solely to showcase the scope and impact of the solution potential.</p>
+            
+            <p><strong>IMPORTANT:</strong> The underlying disease detector model is provided for
+              demonstration and illustrative purposes only. The University and 
+              Authors make no warranty as to its accuracy or reliability. 
+              Users must NOT rely on the output for any diagnostic, commercial,
+              or real-world application.</p>
+          </div>
         </div>
       </div>
     </div>
