@@ -6,7 +6,6 @@ import './Diseases.css';
 const Diseases = () => {
   const location = useLocation();
 
-
   const navLinks = [
     { path: '/solutions', label: 'Solutions' },
     { path: '/', label: 'Demo' },
@@ -15,204 +14,139 @@ const Diseases = () => {
 
   const isActive = (path) => location.pathname === path;
 
+  // Complete diseases data
   const diseasesData = [
     {
       id: 1,
-      name: "Early Blight",
-      scientificName: "Alternaria solani",
-      description: "A common fungal disease that affects tomatoes, potatoes, and other plants, characterized by target-like spots on leaves.",
+      name: 'Powdery Mildew',
+      scientificName: 'Erysiphales',
+      description: 'A fungal disease that appears as white powdery spots on leaves and stems.',
+      riskLevel: 'Medium',
+      season: 'Spring, Summer',
+      affectedPlants: ['Cucumbers', 'Squash', 'Roses', 'Grapes'],
       symptoms: [
-        "Dark brown concentric rings on leaves",
-        "Yellow halos around spots",
-        "Lower leaves affected first",
-        "Stem cankers and fruit lesions"
+        'White powdery spots on leaves',
+        'Yellowing of leaves',
+        'Stunted growth',
+        'Leaf curling'
       ],
       prevention: [
-        "Rotate crops every 2-3 years",
-        "Use certified disease-free seeds",
-        "Avoid overhead watering",
-        "Remove infected plant debris"
+        'Ensure good air circulation',
+        'Avoid overhead watering',
+        'Plant resistant varieties',
+        'Apply sulfur-based fungicides'
       ],
-      treatment: "Apply fungicides containing chlorothalonil or copper-based products early in season",
-      riskLevel: "High",
-      season: "Warm, humid conditions",
-      affectedPlants: ["Tomato", "Potato", "Eggplant"]
+      treatment: 'Apply fungicides containing potassium bicarbonate or neem oil. Remove severely infected leaves.'
     },
     {
       id: 2,
-      name: "Late Blight",
-      scientificName: "Phytophthora infestans",
-      description: "The infamous disease that caused the Irish Potato Famine, rapidly destroying entire crops in favorable conditions.",
+      name: 'Early Blight',
+      scientificName: 'Alternaria solani',
+      description: 'A common fungal disease affecting tomatoes and potatoes.',
+      riskLevel: 'High',
+      season: 'Summer',
+      affectedPlants: ['Tomatoes', 'Potatoes', 'Eggplants'],
       symptoms: [
-        "Water-soaked gray-green spots",
-        "White fuzzy growth undersides",
-        "Rapid plant collapse",
-        "Dark, firm rot on fruits/tubers"
+        'Dark spots with concentric rings',
+        'Yellowing leaves',
+        'Defoliation',
+        'Fruit rot'
       ],
       prevention: [
-        "Use resistant varieties",
-        "Ensure good air circulation",
-        "Avoid overhead irrigation",
-        "Destroy infected plants immediately"
+        'Rotate crops yearly',
+        'Use disease-free seeds',
+        'Space plants properly',
+        'Mulch around plants'
       ],
-      treatment: "Apply systemic fungicides at first sign of disease",
-      riskLevel: "Very High",
-      season: "Cool, wet weather",
-      affectedPlants: ["Potato", "Tomato"]
+      treatment: 'Apply copper-based fungicides. Remove infected plant debris from garden.'
     },
     {
       id: 3,
-      name: "Leaf Miner",
-      scientificName: "Liriomyza spp.",
-      description: "Insect larvae that tunnel through leaves, creating winding trails or blotches while feeding on plant tissue.",
+      name: 'Leaf Spot',
+      scientificName: 'Cercospora species',
+      description: 'Fungal disease causing circular spots on leaves.',
+      riskLevel: 'Low',
+      season: 'Spring, Fall',
+      affectedPlants: ['Beets', 'Spinach', 'Ornamentals'],
       symptoms: [
-        "Winding white trails on leaves",
-        "Blotchy mined areas",
-        "Reduced photosynthesis",
-        "Leaf drop in severe cases"
+        'Small circular spots on leaves',
+        'Spots with dark margins',
+        'Leaf yellowing',
+        'Premature leaf drop'
       ],
       prevention: [
-        "Use floating row covers",
-        "Remove infected leaves promptly",
-        "Encourage natural predators",
-        "Practice crop rotation"
+        'Water at base of plants',
+        'Remove infected leaves',
+        'Improve air circulation',
+        'Avoid working with wet plants'
       ],
-      treatment: "Insecticidal soaps or spinosad for heavy infestations",
-      riskLevel: "Medium",
-      season: "Spring through Fall",
-      affectedPlants: ["Tomato", "Bean", "Spinach", "Lettuce"]
+      treatment: 'Apply fungicides containing chlorothalonil. Ensure proper plant spacing.'
     },
     {
       id: 4,
-      name: "Leaf Mold",
-      scientificName: "Fulvia fulva",
-      description: "A fungal disease primarily affecting greenhouse tomatoes, thriving in high humidity conditions.",
+      name: 'Root Rot',
+      scientificName: 'Phytophthora species',
+      description: 'A serious disease affecting plant roots in waterlogged conditions.',
+      riskLevel: 'Very High',
+      season: 'All seasons',
+      affectedPlants: ['Tomatoes', 'Peppers', 'Avocado', 'Citrus'],
       symptoms: [
-        "Pale green or yellow spots upper surface",
-        "Velvety olive-green mold undersides",
-        "Leaves curl and die",
-        "Reduced fruit production"
+        'Wilting despite adequate water',
+        'Yellowing leaves',
+        'Stunted growth',
+        'Dark, mushy roots'
       ],
       prevention: [
-        "Maintain humidity below 85%",
-        "Provide good air circulation",
-        "Space plants adequately",
-        "Use resistant varieties"
+        'Ensure proper drainage',
+        'Avoid overwatering',
+        'Use well-draining soil',
+        'Plant in raised beds'
       ],
-      treatment: "Apply fungicides containing chlorothalonil or mancozeb",
-      riskLevel: "Medium",
-      season: "High humidity conditions",
-      affectedPlants: ["Tomato", "Occasionally other nightshades"]
+      treatment: 'Improve soil drainage. Apply fungicides containing mefenoxam. Remove severely affected plants.'
     },
     {
       id: 5,
-      name: "Mosaic Virus",
-      scientificName: "Tobacco Mosaic Virus",
-      description: "A viral disease causing mottled appearance on leaves, stunted growth, and reduced yields.",
+      name: 'Rust',
+      scientificName: 'Pucciniales',
+      description: 'Fungal disease characterized by orange, yellow, or brown pustules.',
+      riskLevel: 'Medium',
+      season: 'Spring, Summer',
+      affectedPlants: ['Beans', 'Asparagus', 'Roses', 'Hollyhocks'],
       symptoms: [
-        "Light and dark green mosaic pattern",
-        "Leaf distortion and curling",
-        "Stunted plant growth",
-        "Reduced fruit size and quality"
+        'Orange, yellow or brown pustules',
+        'Leaf discoloration',
+        'Premature leaf drop',
+        'Reduced vigor'
       ],
       prevention: [
-        "Use virus-free seeds",
-        "Control aphid populations",
-        "Disinfect tools regularly",
-        "Remove infected plants"
+        'Water early in the day',
+        'Remove infected leaves',
+        'Space plants adequately',
+        'Avoid overhead irrigation'
       ],
-      treatment: "No cure - remove and destroy infected plants",
-      riskLevel: "High",
-      season: "Throughout growing season",
-      affectedPlants: ["Tomato", "Tobacco", "Pepper", "Cucumber"]
+      treatment: 'Apply sulfur or copper-based fungicides. Remove and destroy infected plant material.'
     },
     {
       id: 6,
-      name: "Septoria",
-      scientificName: "Septoria lycopersici",
-      description: "A common fungal disease creating numerous small spots on leaves, potentially causing severe defoliation.",
+      name: 'Blight',
+      scientificName: 'Phytophthora infestans',
+      description: 'A devastating disease that can destroy entire crops quickly.',
+      riskLevel: 'Very High',
+      season: 'Cool, wet weather',
+      affectedPlants: ['Tomatoes', 'Potatoes'],
       symptoms: [
-        "Small circular spots with dark borders",
-        "Yellow halos around spots",
-        "Tiny black fruiting bodies in centers",
-        "Lower leaves affected first"
+        'Dark lesions on leaves and stems',
+        'White mold under leaves in humidity',
+        'Rapid plant collapse',
+        'Fruit rot'
       ],
       prevention: [
-        "Rotate crops annually",
-        "Avoid working with wet plants",
-        "Remove lower leaves early",
-        "Use drip irrigation"
+        'Use resistant varieties',
+        'Avoid overhead watering',
+        'Remove volunteer plants',
+        'Apply preventive fungicides'
       ],
-      treatment: "Copper-based fungicides or chlorothalonil applications",
-      riskLevel: "Medium",
-      season: "Warm, wet weather",
-      affectedPlants: ["Tomato", "Eggplant"]
-    },
-    {
-      id: 7,
-      name: "Spider Mites",
-      scientificName: "Tetranychus urticae",
-      description: "Tiny arachnids that feed on plant sap, causing stippling and webbing on leaves under hot, dry conditions.",
-      symptoms: [
-        "Fine yellow stippling on leaves",
-        "Fine webbing on undersides",
-        "Leaves turn bronze and drop",
-        "Reduced plant vigor"
-      ],
-      prevention: [
-        "Maintain adequate moisture",
-        "Encourage predatory mites",
-        "Regularly hose plants",
-        "Avoid over-fertilizing"
-      ],
-      treatment: "Miticides, insecticidal soaps, or horticultural oils",
-      riskLevel: "Medium",
-      season: "Hot, dry conditions",
-      affectedPlants: ["Many vegetables", "Ornamentals", "Fruits"]
-    },
-    {
-      id: 8,
-      name: "Yellow Leaf Curl Virus",
-      scientificName: "Tomato yellow leaf curl virus",
-      description: "A viral disease transmitted by whiteflies, causing severe stunting and yield loss in tomatoes.",
-      symptoms: [
-        "Upward curling of leaves",
-        "Yellowing of leaf margins",
-        "Severe stunting of plants",
-        "Reduced fruit production"
-      ],
-      prevention: [
-        "Use resistant varieties",
-        "Control whitefly populations",
-        "Use reflective mulches",
-        "Remove infected plants"
-      ],
-      treatment: "No cure - focus on prevention and whitefly control",
-      riskLevel: "Very High",
-      season: "Warm seasons with whitefly activity",
-      affectedPlants: ["Tomato", "Pepper", "Bean"]
-    },
-    {
-      id: 9,
-      name: "Healthy",
-      scientificName: "Optimal Plant Condition",
-      description: "Plants showing no signs of disease or pest damage, with vigorous growth and proper development.",
-      symptoms: [
-        "Uniform green coloration",
-        "Strong, upright growth",
-        "Proper leaf development",
-        "Abundant fruit production"
-      ],
-      prevention: [
-        "Regular monitoring and inspection",
-        "Proper watering and nutrition",
-        "Good air circulation",
-        "Crop rotation practices"
-      ],
-      treatment: "Maintain current care practices",
-      riskLevel: "None",
-      season: "All seasons with proper care",
-      affectedPlants: ["All properly maintained plants"]
+      treatment: 'Apply fungicides containing chlorothalonil or copper. Destroy infected plants immediately.'
     }
   ];
 
@@ -247,16 +181,12 @@ const Diseases = () => {
             </Link>
           ))}
         </div>
-
-        <Link to="/" className="btn-primary">
-          Detect Disease
-        </Link>
       </nav>
 
       {/* Hero Section */}
       <div className="diseases-hero">
         <div className="hero-content">
-          <h1>Plant Disease Encyclopedia</h1>
+          <h1>Plant Disease</h1>
           <p>Comprehensive guide to {diseasesData.length} common plant diseases detected by our AI system</p>
         </div>
       </div>
