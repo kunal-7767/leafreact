@@ -1,7 +1,6 @@
-// Solutions.js
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import './Solutions.css'; // Use the new CSS file
+import './Solutions.css';
 
 const Solutions = () => {
   const location = useLocation();
@@ -34,10 +33,6 @@ const Solutions = () => {
             </Link>
           ))}
         </div>
-
-        <Link to="/" className="btn-primary">
-          Detect Disease
-        </Link>
       </nav>
 
       {/* Hero Section */}

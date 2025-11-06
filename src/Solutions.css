@@ -1,0 +1,110 @@
+/* Solutions.css - Matching Prevention page theme */
+.solutions-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f0f9f0 0%, #e6f4e6 100%);
+}
+
+.solutions-hero {
+ background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+  color: white;
+  padding: 1rem 1rem;  /* Reduced from 4rem to 2rem */
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.solutions-hero .hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.solutions-hero .hero-content p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.solutions-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.solutions-grid {
+  display: grid;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.solutions-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+}
+
+.solutions-header {
+  display: flex;
+  justify-content: between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #2d5a2d;
+  padding-bottom: 1rem;
+}
+
+.solutions-header h2 {
+  color: #2d5a2d;
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.timing-badge {
+  background: #2d5a2d;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.solutions-methods h3 {
+  color: #2d5a2d;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.solutions-methods ul {
+  list-style: none;
+  padding: 0;
+}
+
+.solutions-methods li {
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.solutions-methods li:before {
+  content: "✓";
+  color: #2d5a2d;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+.content-placeholder {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 2rem;
+  margin-top: 1.5rem;
+  border-left: 4px solid #2d5a2d;
+}
+
+.content-placeholder p {
+  margin: 0.5rem 0;
+  color: #555;
+}
