@@ -7,7 +7,7 @@ function YoloUpload() {
   const location = useLocation();
 
   const navLinks = [
-    { path: '/solutions', label: 'Solutions' },
+    { path: '/solutions', label: 'UseCase' },
     { path: '/', label: 'Demo' },
     { path: '/diseases', label: 'Diseases' }
   ];

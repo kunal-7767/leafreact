@@ -7,7 +7,7 @@ const Diseases = () => {
   const location = useLocation();
 
   const navLinks = [
-    { path: '/solutions', label: 'Solutions' },
+    { path: '/solutions', label: 'UseCase' },
     { path: '/', label: 'Demo' },
     { path: '/diseases', label: 'Diseases' }
   ];
@@ -17,27 +17,28 @@ const Diseases = () => {
   // Complete diseases data
   const diseasesData = [
     {
-      id: 1,
-      name: 'Powdery Mildew',
-      scientificName: 'Erysiphales',
-      description: 'A fungal disease that appears as white powdery spots on leaves and stems.',
-      riskLevel: 'Medium',
-      season: 'Spring, Summer',
-      affectedPlants: ['Cucumbers', 'Squash', 'Roses', 'Grapes'],
-      symptoms: [
-        'White powdery spots on leaves',
-        'Yellowing of leaves',
-        'Stunted growth',
-        'Leaf curling'
-      ],
-      prevention: [
-        'Ensure good air circulation',
-        'Avoid overhead watering',
-        'Plant resistant varieties',
-        'Apply sulfur-based fungicides'
-      ],
-      treatment: 'Apply fungicides containing potassium bicarbonate or neem oil. Remove severely infected leaves.'
-    },
+  id: 1,
+  name: 'Septoria Leaf Spot',
+  scientificName: 'Septoria lycopersici',
+  description: 'A common fungal disease that causes small, dark spots on lower leaves, leading to yellowing and premature leaf drop.',
+  riskLevel: 'High',
+  season: 'Warm, Humid Conditions',
+  affectedPlants: ['Tomatoes', 'Eggplants', 'Parsley', 'Celery'],
+  symptoms: [
+    'Small circular brown or gray spots with dark borders',
+    'Yellowing around the spots',
+    'Lower leaves affected first',
+    'Premature leaf drop'
+  ],
+  prevention: [
+    'Rotate crops annually',
+    'Avoid overhead watering',
+    'Remove plant debris after harvest',
+    'Ensure proper spacing for airflow'
+  ],
+  treatment: 'Remove infected leaves and apply copper-based or chlorothalonil fungicides. Maintain dry foliage and healthy soil conditions.'
+}
+,
     {
       id: 2,
       name: 'Early Blight',

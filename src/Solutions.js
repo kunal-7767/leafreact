@@ -6,7 +6,7 @@ const Solutions = () => {
   const location = useLocation();
 
   const navLinks = [
-    { path: '/solutions', label: 'Solutions' },
+    { path: '/solutions', label: 'UseCase' },
     { path: '/', label: 'Demo' },
     { path: '/diseases', label: 'Diseases' }
   ];
@@ -38,8 +38,8 @@ const Solutions = () => {
       {/* Hero Section */}
       <div className="solutions-hero">
         <div className="hero-content">
-          <h1>Plant Health Solutions</h1>
-          <p>Comprehensive strategies and approaches for optimal plant care and disease management</p>
+          <h1>UseCase Overview</h1>
+          <p></p>
         </div>
       </div>
 
@@ -49,9 +49,7 @@ const Solutions = () => {
           <div className="solutions-card">
             <div className="solutions-header">
               <h2>Solutions Framework</h2>
-              <div className="timing-badge">
-                💡 Your Solution Strategies
-              </div>
+              
             </div>
 
             <div className="solutions-methods">
