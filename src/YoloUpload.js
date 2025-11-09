@@ -6,11 +6,12 @@ import "./LeafDiseaseDetector.css";
 function YoloUpload() {
   const location = useLocation();
 
-  const navLinks = [
-    { path: '/solutions', label: 'UseCase' },
-    { path: '/', label: 'Demo' },
-    { path: '/diseases', label: 'Diseases' }
-  ];
+const navLinks = [
+  { path: '/usecase', label: 'UseCase' },
+  { path: '/solutions', label: 'Metrics' },
+  { path: '/demo', label: 'Demo' },
+  { path: '/diseases', label: 'Diseases' }
+];
 
   const isActive = (path) => location.pathname === path;
 
