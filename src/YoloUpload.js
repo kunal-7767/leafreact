@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useLocation } from 'react-router-dom';
 import "./LeafDiseaseDetector.css";
@@ -6,15 +6,16 @@ import "./LeafDiseaseDetector.css";
 function YoloUpload() {
   const location = useLocation();
 
-const navLinks = [
-  { path: '/usecase', label: 'UseCase' },
-  { path: '/solutions', label: 'Metrics' },
-  { path: '/demo', label: 'Demo' },
-  { path: '/diseases', label: 'Diseases' }
-];
+  const navLinks = [
+    { path: '/usecase', label: 'UseCase' },
+    { path: '/solutions', label: 'Metrics' },
+    { path: '/demo', label: 'Demo' },
+    { path: '/diseases', label: 'Diseases' }
+  ];
 
   const isActive = (path) => location.pathname === path;
 
+  // Load initial state from localStorage
   const [image, setImage] = useState(null);
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -22,6 +23,24 @@ const navLinks = [
   const [preview, setPreview] = useState(null);
 
   const API_BASE_URL = "https://leaf-disease-backend-8.onrender.com";
+
+  // Load saved data on component mount
+  useEffect(() => {
+    const savedPreview = localStorage.getItem('leafcare_preview');
+    const savedResult = localStorage.getItem('leafcare_result');
+    
+    if (savedPreview) {
+      setPreview(savedPreview);
+    }
+    
+    if (savedResult) {
+      try {
+        setResult(JSON.parse(savedResult));
+      } catch (e) {
+        console.error('Error parsing saved result:', e);
+      }
+    }
+  }, []);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -31,7 +50,14 @@ const navLinks = [
       setResult(null);
       
       const reader = new FileReader();
-      reader.onload = (e) => setPreview(e.target.result);
+      reader.onload = (e) => {
+        const previewUrl = e.target.result;
+        setPreview(previewUrl);
+        // Save preview to localStorage
+        localStorage.setItem('leafcare_preview', previewUrl);
+        // Clear old result when new image is uploaded
+        localStorage.removeItem('leafcare_result');
+      };
       reader.readAsDataURL(file);
     }
   };
@@ -55,11 +81,23 @@ const navLinks = [
       });
       
       setResult(res.data);
+      // Save result to localStorage
+      localStorage.setItem('leafcare_result', JSON.stringify(res.data));
     } catch (err) {
       setError(err.response?.data?.error || err.message || "Detection failed. Please try again.");
     } finally {
       setLoading(false);
     }
+  };
+
+  // Clear all saved data (optional reset function)
+  const clearAllData = () => {
+    setImage(null);
+    setResult(null);
+    setPreview(null);
+    setError(null);
+    localStorage.removeItem('leafcare_preview');
+    localStorage.removeItem('leafcare_result');
   };
 
   const getSeverityColor = (confidence) => {
@@ -96,8 +134,6 @@ const navLinks = [
             </Link>
           ))}
         </div>
-
-       
       </nav>
 
       {/* Hero Section */}
@@ -126,6 +162,17 @@ const navLinks = [
               <div className="upload-header">
                 <h2>Upload Leaf Image</h2>
                 <p>Supported formats: JPG, PNG, JPEG • Max size: 10MB</p>
+                
+                {/* Clear Data Button - Only show if there's saved data */}
+                {(preview || result) && (
+                  <button 
+                    onClick={clearAllData}
+                    className="clear-data-btn"
+                    title="Clear all data and start fresh"
+                  >
+                    🗑️ Clear All
+                  </button>
+                )}
               </div>
               
               <div className="upload-area">
@@ -179,6 +226,13 @@ const navLinks = [
                   🎯 High Confidence Scan
                 </button>
               </div>
+
+              {/* Persistence Info */}
+              {(preview || result) && (
+                <div className="persistence-info">
+                  <small>✅ Your data is saved automatically</small>
+                </div>
+              )}
             </div>
           </div>
 
