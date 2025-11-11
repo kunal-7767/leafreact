@@ -158,16 +158,6 @@ function YoloUpload() {
               <div className="upload-header">
                 <h2>Upload Leaf Image</h2>
                 <p>Supported formats: JPG, PNG, JPEG • Max size: 10MB</p>
-                
-                {(preview || result) && (
-                  <button 
-                    onClick={clearAllData}
-                    className="clear-data-btn"
-                    title="Clear all data and start fresh"
-                  >
-                    🗑️ Clear All
-                  </button>
-                )}
               </div>
               
               <div className="upload-area">
@@ -196,31 +186,42 @@ function YoloUpload() {
                 </label>
               </div>
 
-             {/* Action Buttons */}
-                <div className="action-buttons">
+              {/* Action Buttons */}
+              <div className="action-buttons">
+                <button 
+                  onClick={() => handleSubmit("/detect")}
+                  disabled={loading || !image}
+                  className={`detect-btn primary ${loading ? 'loading' : ''}`}
+                >
+                  {loading ? (
+                    <>
+                      <div className="spinner"></div>
+                      Analyzing...
+                    </>
+                  ) : (
+                    "🔍 Detect Diseases"
+                  )}
+                </button>
+                
+                {/* Clear All Button below Detect Diseases */}
+                {(preview || result) && (
                   <button 
-                    onClick={() => handleSubmit("/detect")}
-                    disabled={loading || !image}
-                    className={`detect-btn primary ${loading ? 'loading' : ''}`}
+                    onClick={clearAllData}
+                    className="clear-data-btn"
+                    title="Clear all data and start fresh"
                   >
-                    {loading ? (
-                      <>
-                        <div className="spinner"></div>
-                        Analyzing...
-                      </>
-                    ) : (
-                      "🔍 Detect Diseases"
-                    )}
+                    🗑️ Clear All
                   </button>
-                </div>
+                )}
+              </div>
 
               {(preview || result) && (
                 <div className="persistence-info">
-                  <small> Your data is saved automatically</small>
+                  <small>✅ Your data is saved automatically</small>
                 </div>
               )}
             </div>
-          </div>
+          </div> {/* Closing div for image-section */}
 
           {/* Right Side - Results */}
           <div className="results-section">
