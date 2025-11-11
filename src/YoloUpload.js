@@ -53,9 +53,7 @@ function YoloUpload() {
       reader.onload = (e) => {
         const previewUrl = e.target.result;
         setPreview(previewUrl);
-        // Save preview to localStorage
         localStorage.setItem('leafcare_preview', previewUrl);
-        // Clear old result when new image is uploaded
         localStorage.removeItem('leafcare_result');
       };
       reader.readAsDataURL(file);
@@ -81,7 +79,6 @@ function YoloUpload() {
       });
       
       setResult(res.data);
-      // Save result to localStorage
       localStorage.setItem('leafcare_result', JSON.stringify(res.data));
     } catch (err) {
       setError(err.response?.data?.error || err.message || "Detection failed. Please try again.");
@@ -90,7 +87,6 @@ function YoloUpload() {
     }
   };
 
-  // Clear all saved data (optional reset function)
   const clearAllData = () => {
     setImage(null);
     setResult(null);
@@ -146,24 +142,23 @@ function YoloUpload() {
           <p className="header-subtitle">
             Advanced AI-powered plant health analysis for precision agriculture
           </p>
-          <br />
           <p className="header-subtitle">
             IP Registered with the Government of India 
           </p>
         </div>
       </header>
 
-      <div className="detector-layout">
-        {/* Two Column Layout */}
-        <div className="two-column-layout">
-          {/* Left Column - Upload Section */}
-          <div className="column upload-column">
+      {/* Main Content - Side by Side Layout */}
+      <div className="demo-content">
+        <div className="demo-layout">
+          
+          {/* Left Side - Image Upload */}
+          <div className="image-section">
             <div className="upload-card">
               <div className="upload-header">
                 <h2>Upload Leaf Image</h2>
                 <p>Supported formats: JPG, PNG, JPEG • Max size: 10MB</p>
                 
-                {/* Clear Data Button - Only show if there's saved data */}
                 {(preview || result) && (
                   <button 
                     onClick={clearAllData}
@@ -227,7 +222,6 @@ function YoloUpload() {
                 </button>
               </div>
 
-              {/* Persistence Info */}
               {(preview || result) && (
                 <div className="persistence-info">
                   <small>✅ Your data is saved automatically</small>
@@ -236,9 +230,9 @@ function YoloUpload() {
             </div>
           </div>
 
-          {/* Right Column - Results Section */}
-          <div className="column results-column">
-            <div className="results-section">
+          {/* Right Side - Results */}
+          <div className="results-section">
+            <div className="results-container">
               <div className="results-header">
                 <h2>Detection Results</h2>
                 <div className="results-summary">
@@ -250,7 +244,7 @@ function YoloUpload() {
 
               {result ? (
                 result.detections && result.detections.length > 0 ? (
-                  <div className="detections-grid">
+                  <div className="detections-list">
                     {result.detections.map((detection, index) => {
                       const confidencePercent = detection.confidence_percentage || (detection.confidence * 100);
                       const severityColor = getSeverityColor(confidencePercent);
