@@ -196,35 +196,27 @@ function YoloUpload() {
                 </label>
               </div>
 
-              {/* Action Buttons */}
-              <div className="action-buttons">
-                <button 
-                  onClick={() => handleSubmit("/detect")}
-                  disabled={loading || !image}
-                  className={`detect-btn primary ${loading ? 'loading' : ''}`}
-                >
-                  {loading ? (
-                    <>
-                      <div className="spinner"></div>
-                      Analyzing...
-                    </>
-                  ) : (
-                    "🔍 Detect Diseases"
-                  )}
-                </button>
-                
-                <button 
-                  onClick={() => handleSubmit("/detect")}
-                  disabled={loading || !image}
-                  className="detect-btn secondary"
-                >
-                  🎯 High Confidence Scan
-                </button>
-              </div>
+             {/* Action Buttons */}
+                <div className="action-buttons">
+                  <button 
+                    onClick={() => handleSubmit("/detect")}
+                    disabled={loading || !image}
+                    className={`detect-btn primary ${loading ? 'loading' : ''}`}
+                  >
+                    {loading ? (
+                      <>
+                        <div className="spinner"></div>
+                        Analyzing...
+                      </>
+                    ) : (
+                      "🔍 Detect Diseases"
+                    )}
+                  </button>
+                </div>
 
               {(preview || result) && (
                 <div className="persistence-info">
-                  <small>✅ Your data is saved automatically</small>
+                  <small> Your data is saved automatically</small>
                 </div>
               )}
             </div>
